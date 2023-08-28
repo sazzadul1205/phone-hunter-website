@@ -1,8 +1,8 @@
-const loadPhone = async (searchText, isShowAll) => {
+const loadPhone = async (searchText = '13', isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data
-    console.log(phones);
+    // console.log(phones);
     displayPhones(phones, isShowAll);
 }
 
@@ -52,12 +52,38 @@ const displayPhones = (phones, isShowAll) => {
     toggleLoadingSpinner(false);
 }
 
-const handleShowDetailsClick = async(id) => {
-    console.log(id);
+const handleShowDetailsClick = async (id) => {
+    // console.log(id);
     //load single item data
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
+    const phone = data.data;
+    showPhoneDetails(phone);
+}
+
+const showPhoneDetails = (phone) => {
+    // sho/Display the modal
+    // console.log(phone);
+    const phoneName = document.getElementById('show-detail-phone-name');
+    phoneName.innerText = phone.name;
+
+    const showDetailContainer = document.getElementById('show-detail-container');
+    showDetailContainer.innerHTML = `
+        <img src="${phone.image}" alt="">
+        <p><span>Storage:</span> ${phone?.mainFeatures?.storage}</p>
+        <p>Display Size : <span>${phone.mainFeatures.displaySize}</span></p>
+        <p>Chipset : <span>${phone.mainFeatures.chipSet}</span></p>
+
+
+
+
+
+    `;
+    console.log(phone);
+
+    show_Details_Modal.showModal();
+
 
 }
 
@@ -93,4 +119,4 @@ const handleShowAll = () => {
     handleSearch(true);
 }
 
-// loadPhone();
+loadPhone();
