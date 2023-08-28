@@ -13,6 +13,20 @@ const displayPhones = phones => {
     // clear phone container cards before adding new cards
     phoneContainer.textContent = ' ';
 
+    // display show all button if there are more then 12 items 
+    const showAllContainer = document.getElementById('show-all-container')
+    if (phones.length > 12) {
+        showAllContainer.classList.remove('hidden');
+    }
+    else{
+        showAllContainer.classList.add('hidden')
+    }
+
+
+    // display only the first ten items
+    phones = phones.slice(0,12);
+
+
     phones.forEach(phone => {
         console.log(phone);
         // 2. create a div
@@ -32,15 +46,36 @@ const displayPhones = phones => {
         </div>
         `
         // 4. append Child
-        phoneContainer.appendChild(phoneCard)
+        phoneContainer.appendChild(phoneCard);
     });
+    // hide loading spinner
+    toggleLoadingSpinner(false);
 }
 
 // handel search button
 const handleSearch = () => {
+    toggleLoadingSpinner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    loadPhone(searchText)
+    loadPhone(searchText);
+}
+
+// handel searc recap
+const handleSearch2 = () => {
+    toggleLoadingSpinner(true);
+    const searchField = document.getElementById('search-field2');
+    const searchText = searchField.value;
+    loadPhone(searchText);
+}
+
+const toggleLoadingSpinner =(isLoading)=>{
+    const loadingSpinner = document.getElementById('loading-spinner')
+    if(isLoading){
+        loadingSpinner.classList.remove('hidden')
+    }
+    else{
+        loadingSpinner.classList.add('hidden')
+    }
 }
 
 // loadPhone();
