@@ -21,12 +21,10 @@
             <button onclick="handleSearch()" class="btn btn-accent">Search</button>
             <!-- secondary search field -->
             <input id="search-field2" type="text" placeholder="search here..."
-                class="input input-bordered w-full max-w-xs" />
-            <button onclick="handleSearch2()" class="btn btn-primary">Search</button>
+                class="input input-bordered w-full max-w-xs hidden" />
+            <button onclick="handleSearch2()" class="btn btn-primary hidden">Search</button>
 
         </section>
-        
-
         <!-- search result -->
         <section class="lg:mx-20">
             <!-- spinner or loader -->
@@ -37,10 +35,24 @@
 
             </div>
             <!-- show all button -->
-            <div id="show-all-container" class="text-right hidden mt-3">
-                <button class="btn btn-accent ">Show all</button>
+            <div id="show-all-container" class="text-center hidden my-8">
+                <button onclick="handleShowAll()" class="btn btn-accent ">Show all</button>
             </div>
         </section>
+
+        <!-- show details model -->
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="show_Details_Modal.showModal()">open modal</button>
+        <dialog id="show_Details_Modal" class="modal modal-bottom sm:modal-middle">
+            <form method="dialog" class="modal-box">
+                <h3 class="font-bold text-lg">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </div>
+            </form>
+        </dialog>
     </main>
     <footer>
 
